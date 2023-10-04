@@ -1,6 +1,13 @@
-/* eslint-disable @next/next/no-img-element */
-import Head from 'next/head';
 import React from 'react'
+import {
+  LanguageIcon,
+  MapPinIcon,
+  GlobeAltIcon,
+  ChatBubbleLeftEllipsisIcon,
+  ClockIcon
+} from '@heroicons/react/24/solid'
+
+
 
 
 async function getDetailsByCountry(name) {
@@ -11,6 +18,7 @@ async function getDetailsByCountry(name) {
 }
 
 const CountryName = async ({ params }) => {
+
   const name = params.countryName;
   const data = await getDetailsByCountry(name)
   const language = Object.keys(data[0].languages)[0];
@@ -18,7 +26,7 @@ const CountryName = async ({ params }) => {
     <main className="profile-page">
       <section className="relative block h-[600px]">
         <div className="absolute top-0 w-full h-full bg-center bg-cover"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1627215477561-f0b7755115e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80')" }}
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')" }}
         >
           <span id="blackOverlay" className="w-full h-full absolute opacity-50 bg-black"></span>
         </div>
@@ -35,20 +43,11 @@ const CountryName = async ({ params }) => {
               <div className="flex flex-wrap justify-between">
                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                   <div className="relative">
-                    {/* <img alt="..." src="" className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px z-10" /> */}
-                    {/* <h2>test</h2> */}
                     <span className='w-16 h-16 flex-shrink-0 rounded-full mr-4' style={{ fontSize: '10rem', textAlign: 'center', lineHeight: '4rem' }}>
                       {data[0].flag}
                     </span>
                   </div>
                 </div>
-                {/* <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                  <div className="py-6 px-3 mt-32 sm:mt-0">
-                    <button className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                      Connect
-                    </button>
-                  </div>
-                </div> */}
                 <div className="w-full lg:w-5/12 px-4 lg:order-1">
                   <div className="flex justify-center py-4 lg:pt-4 pt-8">
                     <div className="mr-4 p-3 text-center">
@@ -87,13 +86,8 @@ const CountryName = async ({ params }) => {
               </div>
               <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-full max-w-6xl mx-auto py-8">
                 <div className="flex items-center p-4 bg-[#f5f5f7] rounded-lg shadow-lg">
-                  <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
-                    <svg className="w-6 h-6 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path fillRule="evenodd"
-                        d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
-                        clipRule="evenodd" />
-                    </svg>
+                  <div className="flex flex-shrink-0 items-center justify-center bg-white-200 h-16 w-16 rounded">
+                    <LanguageIcon color="red" className='w-10 h-10' />
                   </div>
                   <div className="flex-grow flex flex-col ml-4">
                     <span className="text-xl font-bold">Language</span>
@@ -104,13 +98,8 @@ const CountryName = async ({ params }) => {
                 </div>
 
                 <div className="flex items-center p-4 bg-[#f5f5f7] rounded-lg shadow-lg">
-                  <div className="flex flex-shrink-0 items-center justify-center bg-red-200 h-16 w-16 rounded">
-                    <svg className="w-6 h-6 fill-current text-red-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path fillRule="evenodd"
-                        d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
-                        clipRule="evenodd" />
-                    </svg>
+                  <div className="flex flex-shrink-0 items-center justify-center bg-white-200 h-16 w-16 rounded">
+                    <MapPinIcon color="red" className='w-10 h-10' />
                   </div>
                   <div className="flex-grow flex flex-col ml-4">
                     <span className="text-xl font-bold">Region</span>
@@ -121,13 +110,8 @@ const CountryName = async ({ params }) => {
                 </div>
 
                 <div className="flex items-center p-4 bg-[#f5f5f7] rounded-lg shadow-lg">
-                  <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
-                    <svg className="w-6 h-6 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path fillRule="evenodd"
-                        d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
-                        clipRule="evenodd" />
-                    </svg>
+                  <div className="flex flex-shrink-0 items-center justify-center bg-white-200 h-16 w-16 rounded">
+                    <GlobeAltIcon color="red" className='w-10 h-10' />
                   </div>
                   <div className="flex-grow flex flex-col ml-4">
                     <span className="text-xl font-bold">Sub-Region</span>
@@ -137,19 +121,21 @@ const CountryName = async ({ params }) => {
                   </div>
                 </div>
                 <div className="flex items-center p-4 bg-[#f5f5f7] rounded-lg shadow-lg">
-                  <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
-                    <svg className="w-6 h-6 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path fillRule="evenodd"
-                        d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
-                        clipRule="evenodd" />
-                    </svg>
+                  <div className="flex flex-shrink-0 items-center justify-center bg-white-200 h-16 w-16 rounded">
+                    {Object.keys(data[0].currencies).map((currencyCode, index) => (
+                      <span key={currencyCode} className='rounded-full text-red-600' style={{ fontSize: '2rem', textAlign: 'center', }}>
+                        {index === 0 && (
+                          <ol>
+                            <li>
+                              {data[0].currencies[currencyCode].symbol}
+                            </li>
+                          </ol>
+                        )}
+                      </span>
+                    ))}
                   </div>
                   <div className="flex-grow flex flex-col ml-4">
                     <span className="text-xl font-bold">Currencies</span>
-                    {/* <div className="flex items-center justify-between">
-                      <span className="text-gray-500"> {data[0].currencies['BTN'].name} ({data[0].currencies['BTN'].symbol}) </span>
-                    </div> */}
                     <div className="">
                       {Object.keys(data[0].currencies).map(currencyCode => (
                         <span key={currencyCode} className="text-gray-500">
@@ -164,13 +150,8 @@ const CountryName = async ({ params }) => {
                   </div>
                 </div>
                 <div className="flex items-center p-4 bg-[#f5f5f7] rounded-lg shadow-lg">
-                  <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
-                    <svg className="w-6 h-6 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path fillRule="evenodd"
-                        d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
-                        clipRule="evenodd" />
-                    </svg>
+                  <div className="flex flex-shrink-0 items-center justify-center bg-white-200 h-16 w-16 rounded">
+                    <ChatBubbleLeftEllipsisIcon color='red' className='w-10 h-10' />
                   </div>
                   <div className="flex-grow flex flex-col ml-4">
                     <span className="text-xl font-bold">Country Code</span>
@@ -180,24 +161,15 @@ const CountryName = async ({ params }) => {
                   </div>
                 </div>
                 <div className="flex items-center p-4 bg-[#f5f5f7] rounded-lg shadow-lg">
-                  <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
-                    <svg className="w-6 h-6 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path fillRule="evenodd"
-                        d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"
-                        clipRule="evenodd" />
-                    </svg>
+                  <div className="flex flex-shrink-0 items-center justify-center bg-white-200 h-16 w-16 rounded">
+                    <ClockIcon color='red' className='w-10 h-10' />
                   </div>
                   <div className="flex-grow flex flex-col ml-4">
                     <span className="text-xl font-bold">Time Zone</span>
-                    <div className="">
+                    <div className="flex flex-wrap">
                       {Object.keys(data[0].timezones).map(currencyCode => (
-                        <span key={currencyCode} className="text-gray-500">
-                          <ol>
-                            <li>
-                              {data[0].timezones[currencyCode]}
-                            </li>
-                          </ol>
+                        <span key={currencyCode} className="text-gray-500 px-2">
+                          {data[0].timezones[currencyCode]}
                         </span>
                       ))}
                     </div>
