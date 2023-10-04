@@ -32,36 +32,53 @@ const CountryName = async ({ params }) => {
         <div className="container mx-auto px-4">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
             <div className="px-6">
-              <div className="flex flex-wrap justify-center">
+              <div className="flex flex-wrap justify-between">
                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                   <div className="relative">
-                    <img alt="..." src="" className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px z-10" />
+                    {/* <img alt="..." src="" className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px z-10" /> */}
+                    {/* <h2>test</h2> */}
+                    <span className='w-16 h-16 flex-shrink-0 rounded-full mr-4' style={{ fontSize: '10rem', textAlign: 'center', lineHeight: '4rem' }}>
+                      {data[0].flag}
+                    </span>
                   </div>
                 </div>
-                <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
+                {/* <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                   <div className="py-6 px-3 mt-32 sm:mt-0">
                     <button className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
                       Connect
                     </button>
                   </div>
-                </div>
-                <div className="w-full lg:w-4/12 px-4 lg:order-1">
+                </div> */}
+                <div className="w-full lg:w-5/12 px-4 lg:order-1">
                   <div className="flex justify-center py-4 lg:pt-4 pt-8">
                     <div className="mr-4 p-3 text-center">
-                      <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600"> {data[0].population} </span><span className="text-sm text-blueGray-400">Population</span>
+                      <span className="text-md font-bold block uppercase tracking-wide text-blueGray-600"> {data[0].population} </span><span className="text-sm text-blueGray-400">Population</span>
                     </div>
                     <div className="mr-4 p-3 text-center">
-                      <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600"> {data[0].area} </span><span className="text-sm text-blueGray-400">Area</span>
+                      <span className="text-md font-bold block uppercase tracking-wide text-blueGray-600"> {data[0].area} km<sup>2</sup> </span><span className="text-sm text-blueGray-400">Area</span>
                     </div>
                     <div className="lg:mr-4 p-3 text-center">
-                      <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600"> {data[0].borders ? borderString : "No Data"} </span><span className="text-sm text-blueGray-400">Border</span>
+                      <span className="text-md font-bold block uppercase tracking-wide text-blueGray-600">
+                        {data[0].borders ? (
+                          Object.keys(data[0].borders).map((border, index) => (
+                            <span key={border} className="border-separator">
+                              {data[0].borders[border]}
+                              {index < Object.keys(data[0].borders).length - 1 ? ' | ' : ''}
+                            </span>
+                          ))
+                        ) : (
+                          "No Data"
+                        )}
+                      </span>
+                      <span className="text-sm text-blueGray-400">Border</span>
                     </div>
+
                   </div>
                 </div>
               </div>
               <div className="text-center mt-12">
                 <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
-                  {/* {data[0].name.common} ({data[0].name.nativeName['dzo'].official}) */}
+                  {data[0].name.common} ({data[0].name.nativeName[language].official})
                 </h3>
                 <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                   <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
@@ -130,8 +147,19 @@ const CountryName = async ({ params }) => {
                   </div>
                   <div className="flex-grow flex flex-col ml-4">
                     <span className="text-xl font-bold">Currencies</span>
-                    <div className="flex items-center justify-between">
-                      {/* <span className="text-gray-500"> {data[0].currencies['BTN'].name} ({data[0].currencies['BTN'].symbol}) </span> */}
+                    {/* <div className="flex items-center justify-between">
+                      <span className="text-gray-500"> {data[0].currencies['BTN'].name} ({data[0].currencies['BTN'].symbol}) </span>
+                    </div> */}
+                    <div className="">
+                      {Object.keys(data[0].currencies).map(currencyCode => (
+                        <span key={currencyCode} className="text-gray-500">
+                          <ol>
+                            <li>
+                              {data[0].currencies[currencyCode].name} ({data[0].currencies[currencyCode].symbol})
+                            </li>
+                          </ol>
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -162,11 +190,34 @@ const CountryName = async ({ params }) => {
                   </div>
                   <div className="flex-grow flex flex-col ml-4">
                     <span className="text-xl font-bold">Time Zone</span>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-500"> {data[0].timezones} </span>
+                    <div className="">
+                      {Object.keys(data[0].timezones).map(currencyCode => (
+                        <span key={currencyCode} className="text-gray-500">
+                          <ol>
+                            <li>
+                              {data[0].timezones[currencyCode]}
+                            </li>
+                          </ol>
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="grid max-w-6xl mx-auto py-8">
+                {data[0].maps['googleMaps'] ? (
+                  <iframe
+                    src={`https://www.google.com/maps/embed/v1/place?q=${(data[0].name.common)}&key=${process.env.NEXT_PUBLIC_API_KEY}`}
+                    style={{ border: '0' }}
+                    width="100%"
+                    height="450"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <p>No Google Maps URL available</p>
+                )}
               </div>
             </div>
           </div>
@@ -177,3 +228,4 @@ const CountryName = async ({ params }) => {
 }
 
 export default CountryName
+
